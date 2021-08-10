@@ -1,0 +1,15 @@
+﻿@page "/superhero/{id:int}"
+@inject ISuperHeroService SuperHeroService
+<h3>SuperHero</h3>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    SuperHeroDB.Shared.SuperHero hero = new SuperHeroDB.Shared.SuperHero();
+
+    protected override async Task OnInitializedAsync()
+    {
+        hero = await SuperHeroService.GetSuperHero(Id);
+    }
+}
